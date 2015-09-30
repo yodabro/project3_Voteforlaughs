@@ -1,0 +1,10 @@
+<% if current_user && current_user.id == @user.id %>
+
+<h1 id="event-index">Account Details</h1>
+<div id="event-index"><%= link_to 'Back',  @user%></div>
+<br/><br/>
+<%= render 'form' %>
+
+<% else %>
+  <%  flash[:message] = "You must the user to access this page!"%>
+<% end %>

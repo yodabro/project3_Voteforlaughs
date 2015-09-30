@@ -1,0 +1,9 @@
+<% if current_user && current_user.id == @event.comedian_id %>
+<h1 id="event-index">Editing Event</h1>
+<div id="event-index"><%= link_to 'Back', @comedian_back %></div>
+<br/><br/>
+<%= render 'form' %>
+
+<% else %>
+  <%  flash[:message] = "You must the comedian to access this page!"%>
+<% end %>

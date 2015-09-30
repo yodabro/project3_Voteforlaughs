@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @comedian.username %> has an upcoming show in your area!</h1>
+    <p>
+      On <%= @event.date %>, <%= @comedian.username %> will be performing at <%= @event.venue %> in <%= @event.location %>.
+    </p>
+      <p>
+      If you're interested in purchasing tickets, click the link below.<br>
+       <%= @url %>
+    </p>
+    <p>Thanks again for being part of the Vote For Laughs Community!</p>
+  </body>
+</html>

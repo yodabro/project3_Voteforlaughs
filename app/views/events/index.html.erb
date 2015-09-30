@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<h1 id="title-font" class="center">Upcoming Shows</h1>
+
+<<<<<<< HEAD
+
+<% @events.each do |event| %>
+  <a href="/events/<%=event.id%>">
+        <div class="row">   <!--picture 1 assigning -->
+              <div class="col s2 m2">
+                <div class="card">
+                  <div class="card-image">
+                    <img src="http://www.myboro.nyc/wp-content/uploads/2015/07/avatar-default2.png">
+                      <span class="card-title"></span>
+                        </div>
+                          <div class="card-content">
+                        <p><%= event.location %></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+  <% end %>
+
+<table>
+
+<table id="event-index">
+
+=======
+<table>
+>>>>>>> 1c6e2046a4b151be9bbd477ee3928877d2d79b6b
+  <thead>
+    <tr>
+      <th id="first-padding">Comedian</th>
+      <th id="table-padding">Date</th>
+      <th id="table-padding">Time</th>
+      <th id="table-padding">Location</th>
+      <th id="venue-padding">Venue</th>
+      <th id="ticket-padding">Tickets link</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <% @showcomedian = User.find_by(id:event.comedian_id) %>
+            <tr>
+              <td id="first-padding-i"><a href="/comedians/<%=@showcomedian.id%>"><%= @showcomedian.username %></td></a>
+              <td id="table-padding-i"><%= event.date %></td>
+              <td id="table-padding-i"><%= event.time %></td>
+              <td id="table-padding-i"><%= event.location %></td>
+              <td id="venue-padding-i"><%= event.venue %></td>
+              <td id="table-padding-i"><a href="<%= event.tickets_link %>" target="_blank"><i class="material-icons">credit_card</i></a></td>
+            </tr>
+      <% end %>
+  </tbody>
+</table>
+<br>

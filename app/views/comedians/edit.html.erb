@@ -1,0 +1,11 @@
+<% if current_user && current_user.id == @comedian.id %>
+
+<h1 id="event-index">Edit Your Profile Page</h1>
+<div id="event-index"><%= link_to 'Back',  @comedian_back%></div>
+<br/><br/>
+<%= render 'form' %>
+<br/>
+
+<% else %>
+  <%  flash[:message] = "You must the comedian to access this page!"%>
+<% end %>

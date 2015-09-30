@@ -1,0 +1,281 @@
+<p id="notice"><%= notice %></p>
+<% if current_user && current_user.id == @comedian.id %>
+<div class="comedian-edit">
+<%= link_to '*Click here to Edit Your Page and Add Social Media*', edit_comedian_path(@comedian) %>
+</div>
+<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col s12 center">
+      <img class="center" src="<%= @comedian.image(:large) %>">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12">
+        <div class="col s12">
+      <h3 class="center" id="title-font"><%= @comedian.username %></h3>
+
+
+        <p class="cLoc">Hails from <%= @comedian.location %> <br/>
+          <% if @comedian.twitter != "" %>
+          <a href="http://twitter.com/<%=@comedian.twitter%>" target="_blank"><i class="fa fa-twitter-square" style="font-size: 25px;"></i></a>
+          <% end %>
+
+          <% if @comedian.instagram != ""%>
+          <a href="http://instagram.com/<%=@comedian.instagram%>" target="_blank"><i class="fa fa-instagram" style="font-size: 25px;"></i></a>
+          <% end %>
+
+          <% if @comedian.facebook != "" %>
+          <a href="http://facebook.com/<%=@comedian.facebook%>" target="_blank"><i class="fa fa-facebook-official" style="font-size: 25px;"></i></a>
+          <% end %>
+
+        </p>
+      </div>
+    <div class="center">
+    <% if current_user && current_user.id != @comedian.id %>
+      <% if @follow %>
+        <% @follows.each do |follow| %>
+          <% if follow.comedian_id == @comedian.id && follow.torf == true %>
+              <%= form_for @follow do |f| %>
+                <div class="field">
+                <input type="hidden" name="_method" value="patch">
+                <%= f.hidden_field :comedian_id, value: @comedian.id %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.hidden_field :torf, value: false  %>
+                </div>
+                <div class="actions">
+                  <button class="btn waves-effect waves-light green lighten-2" id="follow" type="submit" name="action">UNFOLLOW</button>
+                </div>
+              <% end %>
+          <% elsif follow.comedian_id == @comedian.id && follow.torf == false %>
+              <%= form_for @follow do |f| %>
+                <div class="field">
+                <%= f.hidden_field :comedian_id, value: @comedian.id %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.hidden_field :torf, value: true  %>
+                </div>
+                <div class="actions">
+                  <button class="btn waves-effect waves-light green lighten-2" id="follow" type="submit" name="action">FOLLOW</button>
+                </div>
+              <% end %>
+          <% end %>
+        <% end %>
+
+      <% else %>
+        <%= form_for @followNew do |f| %>
+          <div class="field">
+          <%= f.hidden_field :comedian_id, value: @comedian.id %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.hidden_field :torf, value: true  %>
+          </div>
+          <div class="actions">
+            <button class="btn waves-effect waves-light green lighten-2" id="follow" type="submit" name="action">FOLLOW</button>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+    </div>
+    </div>
+
+  </div>
+
+  <div class="row comedian">
+    <div class="col s12 m6 l6 s12">
+
+
+      <div class="col s12">
+        <h5 class="cHead" id="titles">Featured Video</h5>
+        <p class="cVid">
+        <% if @comedian.youtube != "" %>
+          <iframe width="304" height="172" src="https://www.youtube.com/embed/<%=raw(@comedian.youtube)%>" frameborder="0" allowfullscreen></iframe>
+        <% end %>
+        </p>
+        <br>
+      </div>
+
+      <div class="col s12">
+        <h5 class="cHead" id="titles">Featured Podcast</h5>
+        <ul class="cPod">
+          <% if @comedian.podcast_title != "" %>
+          <h6><%=@comedian.podcast_title%></h6>
+          <% end %>
+          <% if @comedian.podcast != "" %>
+          <li><audio src="<%=@comedian.podcast%>" controls></audio></li><br>
+        </ul>
+        <% end %>
+      </div>
+      <div class="col s12">
+        <h5 id="titles">About</h5>
+
+        <p class="cBio"><%= @comedian.bio %></p></div>
+    </div>
+
+
+
+    <div class="col s12 m6 l6">
+        <h5 class="cHead" id="titles">Vote for your City</h5>
+        <% if current_user && current_user.id != @comedian.id %>
+        <a class="modal-trigger btn waves-effect waves-light green lighten-2 cBtn right" href="#cityModal">Add Your City</a>
+        <% end %>
+        <div class "col s12">
+        <table class="striped">
+          <thead>
+            <tr>
+              <th><div class="center">+</div></th>
+              <th><div class="center">Votes</div></th>
+              <th><div class="center">City</div></th>
+              <% if current_user && current_user.id == @comedian.id %>
+              <th colspan="3"></th>
+              <% end %>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @cities.each do |city| %>
+              <% if city.comedian_id == @comedian.id %>
+                  <td>
+
+                  <%= form_for(@vote) do |f| %>
+
+                  <% @votes.each do |vote| %>
+                    <% if vote.city_id == city.id %>
+                      <% city.vote_count +=1 %>
+                      <% if current_user && current_user.id == vote.user_id && @comedian.id == vote.comedian_id %>
+                        <% city.show = true %>
+                      <% end %>
+                    <% end %>
+                    <% end %>
+                    <input type="hidden" name="vote[comedian_id]" value="<%= @comedian.id %>">
+                    <input type="hidden" name="vote[city_id]" value="<%= city.id %>">
+                    <% if current_user %>
+                    <input type="hidden" name="vote[user_id]" value="<%= current_user.id %>">
+                    <% end %>
+                    <input type="hidden" name="city[vote_count]">
+                    <input type="hidden" name="city[show]" value="<%= city.show %>">
+                    <% if current_user && current_user.id != @comedian.id %>
+                      <%if current_user && city.show == false %>
+                      <div class="center"><a href="javascript:void(0)" type="commit" name="commit" value="vote" class="vote"><i class="material-icons">thumb_up</i></button></div>
+                      <% end %>
+                    <% end %>
+                  </td>
+                  <% end %>
+
+
+                </form>
+                  <td><div class="center"><%= city.vote_count %></div></td>
+                  <td><div class="center"><%= city.city %></div></td>
+                  <% if current_user && current_user.id == @comedian.id %>
+                  <td><div class="center"><%=link_to 'Delete', city, method: :delete, data: { confirm: 'Are you sure?' } %></div></td>
+                  <% end %>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+          </div>
+        </div>
+        <br/><br/>
+        <br/><br/>
+        <div class="col s12 m6 l6"><br/>
+          <h5 class="cHead" id="titles">Tour Info</h5>
+          <% if current_user && current_user.id == @comedian.id %>
+          <a class="modal-trigger btn waves-effect waves-light green lighten-2 right cBtn" href="#eventModal">New Event</a>
+          <% end %>
+          <div class "col s12">
+            <table class="striped">
+              <thead>
+                <tr>
+                  <th><div class="center">Date</div></th>
+                  <th><div class="center">Time</div></th>
+                  <th><div class="center">Venue</div></th>
+                  <th><div class="center">City</div></th>
+                  <th><div class="center">Buy Tickets</div></th>
+                  <% if current_user && current_user.id == @comedian.id %>
+                  <th colspan="3"></th>
+                  <% end %>
+                </tr>
+              </thead>
+              <tbody>
+                <% @events.each do |event| %>
+                <% if event.comedian_id == @comedian.id %>
+                  <tr>
+                    <td class="eDate"><div class="center"><%= Date.parse(event.date).strftime("%b") %><br><small><%= Date.parse(event.date).strftime("%d") %></small></div></td>
+                    <td><div class="center"><%= event.time %></div></td>
+                    <td><div class="center"><%= event.venue %></div></td>
+                    <td><div class="center"><%= event.location %></div></td>
+                    <td><div class="center"><a href="<%= event.tickets_link %>" target="_blank"><i class="material-icons">credit_card</i></a></td>
+                    <% if current_user && event.comedian_id == current_user.id %>
+                      <td><%= link_to 'Edit', edit_event_path(event) %></div></td>
+                      <td><%=link_to 'Delete', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+                    <% end %>
+                  </tr>
+                <% end %>
+                <% end %>
+
+              </tbody>
+            </table>
+          </div><br><br>
+        </div>
+        </div>
+
+
+  </div>
+</div>
+
+
+  <!-- Create Event Modal Structure -->
+  <div id="eventModal" class="modal">
+    <div class="modal-content">
+      <div class="row">
+        <div class="col s12">
+          <ul class="tabs">
+            <li class="tab col s3">New Event</li>
+          </ul>
+          <br/>
+        </div>
+        <div id="login" class="col s12"><%= render 'events/form' %></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add City Modal Structure -->
+  <div id="cityModal" class="modal">
+    <div class="modal-content">
+      <div class="row">
+        <div class="col s12">
+          <ul class="tabs">
+            <li class="tab col s3">New City</li>
+          </ul>
+          <br/>
+        </div>
+          <div id="login" class="col s12">
+            <%= form_for(@city) do |f| %>
+              <% if @city.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@city.errors.count, "error") %> prohibited this city from being saved:</h2>
+                  <ul>
+                  <% @city.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              <div class="field">
+                <input type="text" name="city[city]" id="city_location" placeholder="Add your city">
+                <%= f.hidden_field :vote_count, value: 1 %>
+                <%= f.hidden_field :show, value: false %>
+                <%= f.hidden_field :comedian_id, value: @comedian.id %>
+                <% if current_user %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                  <div class="actions">
+                    <button class="btn waves-effect waves-light green lighten-2 actions" type="submit" name="commit" value="Add your City">Add City</button>
+                  </div>
+              <% end %>
+
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>

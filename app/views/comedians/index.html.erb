@@ -1,0 +1,110 @@
+<p id="notice"><%= notice %></p>
+<h1 id="title-font" class="center">Comedians</h1>
+  <ul class="pagination">
+    <li class="waves-effect"><a href="#!">A</a></li>
+    <li class="waves-effect"><a href="#!">B</a></li>
+    <li class="waves-effect"><a href="#!">C</a></li>
+    <li class="waves-effect"><a href="#!">D</a></li>
+    <li class="waves-effect"><a href="#!">E</a></li>
+    <li class="waves-effect"><a href="#!">F</a></li>
+    <li class="waves-effect"><a href="#!">G</a></li>
+    <li class="waves-effect"><a href="#!">H</a></li>
+    <li class="waves-effect"><a href="#!">I</a></li>
+    <li class="waves-effect"><a href="#!">J</a></li>
+    <li class="waves-effect"><a href="#!">K</a></li>
+    <li class="waves-effect"><a href="#!">L</a></li>
+    <li class="waves-effect"><a href="#!">M</a></li>
+    <li class="waves-effect"><a href="#!">N</a></li>
+    <li class="waves-effect"><a href="#!">O</a></li>
+    <li class="waves-effect"><a href="#!">P</a></li>
+    <li class="waves-effect"><a href="#!">Q</a></li>
+    <li class="waves-effect"><a href="#!">R</a></li>
+    <li class="waves-effect"><a href="#!">S</a></li>
+    <li class="waves-effect"><a href="#!">T</a></li>
+    <li class="waves-effect"><a href="#!">U</a></li>
+    <li class="waves-effect"><a href="#!">V</a></li>
+    <li class="waves-effect"><a href="#!">W</a></li>
+    <li class="waves-effect"><a href="#!">X</a></li>
+    <li class="waves-effect"><a href="#!">Y</a></li>
+
+    <li class="waves-effect"><a href="z!">Z</a></li>
+<a href="http://localhost:3000/comedians#!"><i class="material-icons">contacts</i></a>
+  </ul>
+
+  <% @comedians.each do |comedian| %>
+
+    <li class="waves-effect"><a href="#!">Z</a></li>
+<a href="#"><i class="material-icons">contacts</i></a>
+  </ul>
+<<<<<<< HEAD
+
+    <% @comedians_user.each do |comedian| %>
+
+
+=======
+<div id="com-padding">
+  <% @comedians_user.each do |comedian| %>
+>>>>>>> 1c6e2046a4b151be9bbd477ee3928877d2d79b6b
+  <a href="/comedians/<%=comedian.id%>">
+        <div class="row">   <!--picture 1 assigning -->
+              <div class="col s2 m2">
+                <div class="card hoverable">
+                  <div class="card-image">
+                    <img class="center" src="<%= comedian.image(:large) %>">
+                    <span class="card-title"></span>
+                      </div>
+                        <div class="card-content">
+                          <p><%= comedian.username  %></p>
+                      </a>
+                </div>
+            </div>
+        </div>
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+  <% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Location</th>
+      <th>Bio</th>
+      <th>Twitter</th>
+      <th>Facebook</th>
+      <th>Instagram</th>
+      <th>Youtube</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+<% @comedians.each do |comedian| %>
+
+  <tbody>
+      <tr>
+        <td><%= comedian.username %></td>
+        <td><%= comedian.email %></td>
+        <td><%= comedian.location %></td>
+        <td><%= comedian.bio %></td>
+        <td><%= comedian.twitter %></td>
+        <td><%= comedian.facebook %></td>
+        <td><%= comedian.instagram %></td>
+        <td><%= comedian.youtube %></td>
+        <td><%= link_to 'Show', comedian %></td>
+        <td><%= link_to 'Edit', edit_comedian_path(comedian) %></td>
+        <td><%= link_to 'Destroy', comedian, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Comedian', new_comedian_path %>
+</div>
+          <% end %>
+=======
+    <% end %>
+  </div>
+>>>>>>> 1c6e2046a4b151be9bbd477ee3928877d2d79b6b

@@ -1,0 +1,356 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require jquery-ui
+ */
+
+@import "materialize";
+@import url(https://fonts.googleapis.com/css?family=Abel|Poiret+One|Fontdiner+Swanky|Titillium+Web:400,700,300,200,600,900);
+
+ @media (max-width: 992px) {
+   .startForm {
+     width: 100%;
+     margin: 0 auto;
+   }
+ }
+ @media (min-width: 993px) {
+  .startForm{
+    width: 50%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 992px) {
+  .editForm {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 993px) {
+ .editForm{
+   width: 50%;
+   margin: 0 auto;
+ }
+}
+
+#bg {
+  // background-position: -50% -80px;
+  background-size: 100%;
+  height: 114vh;
+  margin-bottom: -80px;
+}
+
+.active{
+  color: #0c1515 !important;
+}
+
+.edit_user{
+  width: 75% !important;
+  margin:auto;
+}
+.edit_event{
+  width: 75% !important;
+  margin:auto;
+}
+.brand-logo {
+  font-family: 'Fontdiner Swanky', cursive !important;
+  font-size: 46px !important;
+  color: #EF8E16 !important;
+}
+
+a{
+  color: #d01717 !important;
+}
+i{
+  color: #475ba4 !important;
+}
+#nav-mobile {
+  font-family: 'Titillium Web', sans-serif !important;
+}
+
+body {
+  font-family: 'Abel', sans-serif !important;
+}
+
+.green.lighten-2 {
+  background-color: #EF8E16 !important;
+}
+
+.waves-light {
+  background-color: #EF8E16 !important;
+}
+
+.modal{
+  max-height:600px !important;
+}
+
+.comedian-edit {
+  text-align: center;
+  font-size: 22px;
+}
+#headline {
+ position:fixed;
+ left: 0px;
+ padding-top: 100px;
+ width:100vw;
+ height:100vw;
+ background-size: contain;
+ background-repeat: no-repeat;
+ z-index: -1;
+
+ -webkit-user-select: none; -khtml-user-select: none;
+ -moz-user-select: none; -o-user-select: none; user-select: none;
+
+   &.schumer {
+     background-image: image-url('amySchumer.jpg');
+   }
+   &.tosh {
+     background-image: image-url('danielTosh.jpg');
+   }
+   &.glover {
+     background-image: image-url('donaldGlover.jpg');
+   }
+   &.burress {
+     background-image: image-url('hannibalBurress.jpg');
+   }
+   &.penn {
+     background-image: image-url('kalPenn.jpg');
+   }
+   &.colbert {
+     background-image: image-url('stephenColbert.jpg');
+   }
+ }
+
+ .parallax-container {
+      height: 75vh;
+}
+
+.pac-container {
+  z-index: 2000;
+}
+
+.container-cus{
+    width: 88%;
+    margin: 0 auto;
+}
+
+.event-form{
+width: 33%;
+display:inline-block;
+}
+.ui-autocomplete{
+  position: absolute;
+  z-index: 1001 !important;
+}
+.cBio{
+  text-align: justify;
+  text-justify: inter-word;
+}
+.cLoc{
+  text-align: center;
+}
+.cVid{
+  text-align: center;
+}
+
+.cPod{
+  text-align: center;
+}
+.cHead{
+  display: inline-block;
+  line-height: 110%;
+  margin: 0.82rem 0 0.656rem 0;
+}
+.cBtn{
+  display: inline-block;
+  margin: 0.82rem 0 0.656rem 0;
+}
+.cContain{
+  background-color: #F2DC5D;
+}
+.row + .comedian{
+  background-color: rgba(239,142,22,0.5);
+  border-radius: 5px;
+}
+.nHead{
+  margin-left: 5%;
+}
+.hPad{
+  margin-left: 5%;
+}
+.eDate{
+  background-color: rgba(239,142,22,0.5);
+}
+.gold{
+  color: gold;
+}
+.nav-wrapper{
+  background-color: #0C1515 !important;
+}
+.tContain{
+  background-color: rgba(193,17,11,0.3);
+  border-radius: 5px;
+  color: white !important;
+}
+.nTeam{
+  display: inline-block;
+  margin: 3%;
+  color: white !important;
+}
+table.striped > tbody > tr:nth-child(odd) {
+  background-color: rgb(239,142,22);
+}
+thead {
+  border-bottom: none;
+  margin-right:5%;
+}
+footer.page-footer {
+  margin-top: 20px;
+  padding-top: 20px;
+  background-color: #0C1515;
+}
+.footer-copyright {
+  background-color: #0C1515 !important;
+}
+.nContain {
+  margin-top: 5%;
+}
+.nBtn{
+  margin-left: 50%;
+  margin-bottom: 3%;
+}
+.nMenu{
+  margin: 5% 5%;
+}
+
+.message {
+  margin-left: 0 auto !important;
+  margin-right: 0  auto !important;
+  display: block !important;
+}
+
+.card{
+  margin-left: 0 auto !important;
+  margin-right: 0 auto !important;
+  display: block !important;
+}
+.card-content{
+  margin-left: 0 auto !important;
+  margin-right: 0 auto !important;
+  display: inline !important;
+  text-align: center !important;
+}
+
+.card-title{
+  margin-left: 0 auto !important;
+  margin-right: 0  auto !important;
+}
+
+
+
+#notice {
+  text-align: center;
+}
+
+#event-index{
+  padding-left:5%;
+  font-family: 'Titillium Web', sans-serif !important;
+}
+
+#title-font{
+  font-family: 'Titillium Web', sans-serif !important;
+  font-weight: bolder;
+}
+
+#table-padding{
+  padding-left:2%;
+  font-weight: bold;
+  text-decoration: underline;
+}
+#table-padding-i{
+  padding-left:2%;
+}
+#first-padding{
+  padding-left:5%;
+  text-decoration: underline;
+}
+#first-padding-i{
+  padding-left:5%;
+}
+#venue-padding{
+  padding-left:4%;
+  text-decoration: underline;
+}
+#ticket-padding{
+  text-decoration: underline;
+}
+#venue-padding-i{
+  padding-left:4%;
+}
+#com-padding{
+  padding-left:8%;
+  padding-right:8%;
+}
+
+#titles{
+  color: red;
+  opacity: 0.5;
+  font-weight: bold;
+}
+
+.side-nav{
+  background-color: #0c1515 !important;
+  font-family: 'Titillium Web', sans-serif !important;
+  max-height: 275px !important;
+  max-width: 275px !important;
+}
+/* merging start */
+
+.pagination {
+  border: 2px solid #0C1515;
+  width: 68%;
+  position: relative;
+  margin-left: 16%;
+  margin-right: 16%;
+  padding-top: 0.3%;
+  text-align:center;
+}
+
+#follow{
+  background-color: rgba(193,17,11,0.65) !important;
+  color: white !important;
+}
+
+.waves-effect {
+  text-align:center;
+}
+.material-icons{
+  margin-top: 0.2%;
+}
+#red-icons{
+  margin-top: 0.2%;
+  color: #d01717 !important;
+}
+.yeah {
+  padding: 2%;
+}
+audio {
+  width: 100%;
+}
+/*.switch label .lever{
+  background: red;
+}
+.switch label .lever::after{
+  background: red;
+}*/

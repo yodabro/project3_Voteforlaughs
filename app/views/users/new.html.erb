@@ -1,0 +1,80 @@
+<main>
+<!--  Parallax Section  -->
+  <div class="parallax-container">
+    <div class="parallax"><img id="bg" src="http://brendanhastings.nyc/vfl/bbb.jpg"></div>
+
+    <div class="section" id="index-banner">
+      <div class="container nContain nMenu">
+        <div class="row">
+          <div class="col s12 m6 l6 tContain">
+            <h5 class ="nHead center-on-small-only">Helping New Comedians reach Big Cities</h5>
+            <h5 class ="nHead center-on-small-only">and Big Comedians reach New Cities...</h5><br>
+            <% unless current_user %>
+            <a class="nHead nBtn modal-trigger btn waves-effect waves-light green lighten-2" target="_blank" href="#modal1">Join Today</a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section cContain">
+
+    <div class="row container">
+      <h2 class="header">Have you ever wished a Comedian would play your City...</h2>
+      <p class="grey-text text-darken-3 lighten-3">and knew there were others who felt the same way? Welcome to VoteForLaughs - where you can join with other like-minded comedy fans to encourage the biggest and best comedians to come perform in your town or city. Or, encourage the local club to book an up and coming comedian whose podcast you can't get enough of by adding your city to their page and encouraging others to vote it up. You can also opt in to notifications when your favorite comedians add a show close by so you don't miss out on tickets. With VoteForLaughs, it's all just a few clicks away!</p>
+    </div>
+
+    <div class="row container">
+      <h4 class="light">Are you a comedian who wants to know what cities are eager to see you? Or wants help reaching new markets?</h4>
+      <p class="grey-text text-darken-3 lighten-3">Join today and connect with fans from all over the world! Our goal here at VoteForLaughs is simple - help established comedians reach die hard fans in new cities and help up and coming comedians get booked in bigger markets by providing a tool that showcases where fans are interested in seeing them.</p>
+    </div>
+  </div>
+
+  <div class="parallax-container">
+    <div class="parallax"><img id="bg" src="http://brendanhastings.nyc/vfl/cc.jpg"></div>
+    <div class="section" id="index-banner">
+      <div class="container nContain">
+        <div class="row">   <!--picture 1 assigningn -->
+            <% @comedians.each do |comedian| %>
+              <div class="col s4 m4">
+                <div class="card hoverable">
+                  <div class="card-image">
+                    <a href="/comedians/<%=comedian.id%>">
+                    <img class="center" src="<%=comedian.image(:large)%>">
+                    <span class="card-title"></span>
+                  </div>
+                    <div class="card-content">
+                    <p><%= comedian.username %></p></a>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="section" id="index-banner">
+      <div class="container-cus nContain">
+        <div class="row">
+          <div class="col s12 tContain">
+            <ul class="center">
+              <li class="nTeam"><h5>Lead Developer</h5><h6>Brendan Hastings</h6></li>
+              <li class="nTeam"><h5>Developer</h5><h6>Leon Lamle</h6></li>
+              <li class="nTeam"><h5>Developer</h5><h6>Dmitriy Bodan</h6></li>
+              <li class="nTeam"><h5>UX Designer</h5><h6>Grace Hong</h6></li>
+              <li class="nTeam"><h5>Product Manager</h5><h6>Rebecca Urbelis</h6></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2015 VoteForLaughs, All rights reserved.
+        <a class="grey-text text-lighten-4 right" href="https://github.com/Dogfalo/materialize/blob/master/LICENSE">MIT License</a>
+        </div>
+      </div>
+    </footer>

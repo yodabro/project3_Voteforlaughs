@@ -1,0 +1,20 @@
+
+<% if current_user && current_user.admin? %>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>City:</strong>
+  <%= @city.city %>
+</p>
+
+<p>
+  <strong>Votes:</strong>
+  <%= @city.votes %>
+</p>
+
+<%= link_to 'Edit', edit_city_path(@city) %> |
+<%= link_to 'Back', cities_path %>
+<% else %>
+  <%  flash[:message] = "You must be an admin to access this page!"%>
+<% end %>

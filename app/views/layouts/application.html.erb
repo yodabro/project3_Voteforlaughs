@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VoteForLaughs</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.62/jquery.inputmask.bundle.js"></script>
+</head>
+<body class="cContain">
+
+  <!-- Nav -->
+
+  <nav class="navBar">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo hPad">VoteForLaughs</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons" id="red-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="<%= comedians_url %>">Comedians</a></li>
+        <li><a href="<%= events_url %>">Events</a></li>
+        <% unless current_user == nil %>
+        <li><%= link_to('Logout', session_path, :method => :delete) %></li>
+        <% if current_user.user? %>
+        <li><%= link_to(current_user.username, user_path(current_user.id)) %></li>
+        <% else %>
+        <li><%= link_to(current_user.username, comedian_path(current_user.id)) %></li>
+        <% end %>
+        <% end %>
+        <% unless current_user %>
+        <li><a class="modal-trigger" href="#modal1">Sign Up</a></li>
+        <li><a class="modal-trigger" href="#modal2">Log In</a></li>
+        <% end %>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="<%= comedians_url %>">Comedians</a></li>
+        <li><a href="<%= events_url %>">Events</a></li>
+        <% unless current_user == nil %>
+        <li><%= link_to('Logout', session_path, :method => :delete) %></li>
+        <% if current_user.user? %>
+        <li><%= link_to(current_user.username, user_path(current_user.id)) %></li>
+        <% else %>
+        <li><%= link_to(current_user.username, comedian_path(current_user.id)) %></li>
+        <% end %>
+        <% end %>
+        <% unless current_user %>
+        <li><a class="modal-trigger" href="#modal1">Sign Up</a></li>
+        <li><a class="modal-trigger" href="#modal2">Log In</a></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+
+<% unless current_user %>
+  <!-- Sign Up Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <div class="row">
+        <div class="col s12">
+          <ul class="tabs">
+            <li class="tab col s3"><a href="#users">User Signup</a></li>
+            <li class="tab col s3"><a href="#comedians">Comedian Signup</a></li>
+          </ul>
+          <br/>
+        </div>
+        <div id="users" class="col s12"><%= render 'users/form' %></div>
+        <div id="comedians" class="col s12"><%= render 'comedians/form' %></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Log In Modal Structure -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <div class="row">
+        <div class="col s12">
+          <ul class="tabs">
+            <li class="tab col s3"><a class="active" href="#login">Log in</a></li>
+          </ul>
+          <br/>
+        </div>
+        <div id="login" class="col s12"><%= render 'sessions/form' %></div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+
+<!-- Error handling -->
+<% if flash[:message] %>
+  <div class="center-align row">
+    <div class="center-align col s6 offset-s3 center">
+      <div class="center-align card blue-grey darken-1 center">
+        <div class="center-align card-content white-text">
+          <div class="message card-title">
+            <%= flash[:message] %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<%= yield %>
+<script src="https://www.dwin2.com/pub.248913.min.js"></script>
+</body>
+</html>
